@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Schedule">
+	
+	<select id="getList" resultType="scheduleBean">
+		SELECT * FROM SCHEDULE WHERE SCHEDULE_OPEN_CHECK = '1'
+	</select>
+	<insert id="insertSchedule" parameterType="scheduleBean">
+		INSERT INTO SCHEDULE
+		VALUES(
+			SCHEDULE_SEQ.NEXTVAL, #{schedule_name}, #{schedule_user_id}, 
+			${schedule_city_num}, TO_DATE(#{schedule_departure},'yyyy/mm/dd'), TO_DATE(#{schedule_arrival},'yyyy/mm/dd'), 
+			${schedule_term}, ${schedule_open_check}, 0
+		)
+	</insert>
+	
+	<update id="updateReadCount" parameterType="_int">
+		UPDATE SCHEDULE
+		SET SCHEDULE_VIEWS = SCHEDULE_VIEWS + 1
+		WHERE SCHEDULE_NUM = ${schedule_num}
+	</update>
+	
+	<select id="getDetail" parameterType="_int" resultType="scheduleBean">
+		SELECT * FROM SCHEDULE WHERE SCHEDULE_NUM = ${schedule_num}
+	</select>	
+	
+	<update id="updateSchedule" parameterType="scheduleBean">
+		UPDATE SCHEDULE
+		SET SCHEDULE_NAME = #{schedule_name}, SCHEDULE_CITY_NUM = ${schedule_city_num}, 
+		SCHEDULE_DEPARTURE = #{schedule_departure}, SCHEDULE_ARRIVAL = #{schedule_arrival}, 
+		SCHEDULE_TERM = ${schedule_term}, SCHEDULE_OPEN_CHECK = ${schedule_open_check}, 
+		WHERE SCHEDULE_NUM = ${schedule_num}
+	</update>
+	
+	<delete id="deleteSchedule" parameterType="_int">
+		DELETE FROM SCHEDULE WHERE SCHEDULE_NUM = ${schedule_num}
+	</delete>
+	
+	<select id="getSeq" resultType="_int">
+		SELECT SCHEDULE_SEQ.CURRVAL FROM DUAL
+	</select>
+	
+	<!-- 무슨목적? -->
+	<select id="listAll" parameterType="map" resultType="scheduleBean">
+		SELECT * FROM
+			(SELECT ROWNUM R, D.* FROM 
+				(SELECT * FROM SCHEDULE ORDER BY USER_ID DESC) D) B
+				 WHERE B.R BETWEEN ${startRow} AND ${endRow}
+	</select>
+	
+	<!-- 내 일정 목록 보기 -->
+	<select id="myScheduleList" parameterType="map" resultType="scheduleBean">
+		SELECT * FROM
+			(SELECT ROWNUM R, D.* FROM 
+				(SELECT * FROM SCHEDULE WHERE SCHEDULE_USER_ID = #{schedule_user_id}
+					ORDER BY SCHEDULE_NUM DESC) D) B
+				 WHERE B.R BETWEEN 0 AND 5
+	</select>
+	
+	<!-- 공개 설정된 일정들 리스트 보기 -->
+	<select id="openedScheduleList" parameterType="map" resultType="scheduleBean">
+		SELECT * FROM
+			(SELECT ROWNUM R, D.* FROM 
+				(SELECT * FROM SCHEDULE 
+					WHERE SCHEDULE_OPEN_CHECK = #{schedule_open_check}
+					ORDER BY SCHEDULE_NUM DESC) D) B
+				 WHERE B.R BETWEEN 0 AND 5
+	</select>
+	
+</mapper>

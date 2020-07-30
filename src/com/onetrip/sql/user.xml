@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 2. join (성공, 실패) / param : user테이블 속성 전부 -->
+<!-- 내 정보 상세보기 / param : session_id / sql : select 사용(user.* 보이기) -->
+<!-- 내 정보 수정 / param : 입력한 pw, session_id, 수정된 user.* /update 사용(user.*) -->
+<!-- 계정 탈퇴 / param : pw, session_id / sql : delete 사용( user_id = ? delete 
+	)
+	
+** 관리자는 사용자가 작성한 후기랑 일정 삭제할 수 있는 기능만 	
+	 -->
+
+<mapper namespace="User">
+
+	<!-- 회원가입 완료-->
+	<!-- config.xml에  alias 설정했습니다.-->
+	<insert id="join" parameterType="userBean">
+	INSERT INTO "USER"
+	(USER_ID, USER_NAME, USER_PW, USER_GENDER, USER_AGE, USER_ADDRESS, USER_EMAIL, USER_HP,USER_PHOTO,USER_LOGIN_TYPE)
+	VALUES(
+	 #{user_id},#{user_name},#{user_pw},#{user_gender},${user_age},
+	 #{user_address},#{user_email},#{user_hp},#{user_photo},#{user_login_type}
+	 )
+	</insert>
+
+	<!-- 로그인  완료-->
+	<!-- <select id="login" parameterType="hashmap" resultType="_int">
+		SELECT USER_ID FROM "USER" WHERE USER_ID =#{user_id} AND USER_PW =#{user_pw}
+	</select> -->
+
+	<select id="login" parameterType="map" resultType="map">
+		SELECT USER_ID, NVL(USER_LOGIN_TYPE, 0) ADMIN FROM "USER"
+		WHERE USER_ID = #{user_id} AND USER_PW = #{user_pw}
+	</select>
+
+	<!-- 본인확인(관리자OR사용자)  (session_id랑 쿼리결과값(user_id랑 비교) 진행중 -->
+	<select id="user_identity" parameterType="map" resultType="string">
+		SELECT USER_ID FROM "USER" WHERE USER_PW =#{user_pw} AND USER_ID=#{user_id}
+	</select>
+
+	<!-- id 중복 체크 -->
+	<select id="check_id" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM "USER" WHERE USER_ID = #{user_id}
+	</select>
+
+	<!-- 내 정보 조회 진행중-->
+	<select id="select_myInfo" parameterType="string" resultType="userBean">
+		SELECT * FROM "USER" WHERE USER_ID = #{user_id}
+	</select>
+
+
+	<!-- 내 정보 수정  미-->
+	<update id="update_userInfo" parameterType="userBean">
+		UPDATE "USER" 
+		SET USER_NAME =#{user_name},USER_PW =#{user_pw},
+		 USER_AGE=#{user_age}, USER_ADDRESS =#{user_address},
+		USER_EMAIL =#{user_email}, USER_HP =#{user_hp}, USER_PHOTO =#{user_photo}
+		WHERE USER_ID =#{user_id}
+	</update>
+
+
+	<!-- 계정 탈퇴(삭제) -->
+	<delete id="delete_user" parameterType="string">
+	DELETE FROM "USER"
+	WHERE USER_ID=#{id}
+
+	</delete>
+	
+
+
+</mapper>
+
+
+	

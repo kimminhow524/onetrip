@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="City_Photo">
+
+	<select id="getCityPhoto" parameterType="_int" resultType="city_Photo_Bean">
+		SELECT * FROM CITY_PHOTO WHERE CITY_NUM = ${num}
+	</select>
+</mapper>

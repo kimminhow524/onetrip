@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="City">
+	<select id="getListAll" resultType="cityBean">
+		select * from city
+	</select>
+	<select id="getCityNum" parameterType="String" resultType="cityBean">
+		SELECT * FROM CITY WHERE CITY_NAME = #{city_name}
+	</select>
+	<select id="listAll" parameterType="String" resultType="cityBean">
+				SELECT * FROM CITY
+				<where>
+				<if test = "searchKeyword != null">
+					CITY_NAME LIKE #{searchKeyword} OR COUNTRY LIKE #{searchKeyword}
+				</if>			
+				</where>	
+				 ORDER BY CITY_NUM DESC
+				 
+	</select>
+	<select id="cityCnt" parameterType="String" resultType="_int">
+		SELECT COUNT(*) FROM CITY
+		<where>
+        <if test="searchKeyword != null">
+           CITY_NAME like #{searchKeyword} OR COUNTRY LIKE #{searchKeyword}
+        </if>
+        </where>
+	</select>
+	<select id="photoList" parameterType="_int" resultType="String">
+		SELECT CITY_PHOTO_NAME FROM CITY_PHOTO WHERE CITY_NUM = ${city_num}
+		
+	</select>
+	<select id="getDetail" parameterType="_int" resultType="cityBean">
+		SELECT * FROM CITY WHERE CITY_NUM = ${city_num}
+	</select>
+</mapper>

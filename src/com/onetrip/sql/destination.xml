@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- destination.destination_city_num=?인 관광지 목록 띄워주기 / param : schedule 객체 / select -->
+
+<mapper namespace="Destination">
+	<select id="getList" parameterType="_int" resultType="destinationBean">
+		SELECT * FROM DESTINATION WHERE DESTINATION_CITY_NUM = ${city_num}
+		ORDER BY DESTINATION_NUM DESC
+	</select>
+	
+	<select id="getListName" parameterType="string" resultType="destinationBean">
+		SELECT * FROM DESTINATION WHERE DESTINATION_NAME like #{destination_name}
+	</select>
+	
+	<!-- 관광지 상세 페이지 -->
+	<select id="getDetail" parameterType="_int" resultType="destinationBean">
+		SELECT * FROM DESTINATION WHERE DESTINATION_NUM = ${destination_num}
+	</select>
+</mapper>

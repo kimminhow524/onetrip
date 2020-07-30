@@ -1,0 +1,24 @@
+.tablink{
+font-size: 20px;
+margin-bottom: 15px;
+
+}
+.contents{
+border:1px solid gray;
+text-align: center;
+
+}
+.myInfo_fieldset{
+ width: 50%;
+ margin: 0 auto;
+ font-weight: bold;	
+}
+
+input[type="button"], input[type="submit"], input[type="reset"], button, .button {
+padding: 10px 15px;
+margin: 10px;
+}
+
+p{
+ text-align: center;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Days_Detail">
+	<insert id="insertDaysDetail" parameterType="daysdetailBean">
+		INSERT INTO DAYS_DETAIL
+		VALUES(
+			#{days_detail_n}, #{days_detail_schedule_num}, #{days_detail_destination_num}, 
+			#{days_detail_order}
+			)
+	</insert>
+	
+	<update id="updateDaysDetailDestination" parameterType="_int">
+		UPDATE DAYS
+		SET DAYS_DETAIL_DESTINATION_NUM = #{days_detail_destination_num}
+		WHERE DAYS_DETAIL_SCHEDULE_NUM = ${days_detail_schedule_num}
+	</update>
+	
+	<update id="updateDaysDetailOrder" parameterType="_int">
+		UPDATE DAYS
+		SET DAYS_DETAIL_ORDER = #{days_detail_order}
+		WHERE DAYS_DETAIL_SCHEDULE_NUM = ${days_detail_schedule_num}
+	</update>
+	
+</mapper>

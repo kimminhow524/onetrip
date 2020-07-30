@@ -1,0 +1,112 @@
+{
+	"folders": {},
+	"connections": {
+		"oracle_thin-1730f65757e-5ec26b90a6018578": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "XE 2",
+			"save-password": true,
+			"show-system-objects": true,
+			"read-only": false,
+			"configuration": {
+				"host": "127.0.0.1",
+				"port": "1521",
+				"database": "XE",
+				"url": "jdbc:oracle:thin:@//127.0.0.1:1521/XE",
+				"home": "C:\\oraclexe\\app\\oracle\\product\\11.2.0\\server",
+				"type": "dev",
+				"properties": {
+					"useFetchSizeWithLongColumn": "true",
+					"loginTimeout": "20"
+				},
+				"provider-properties": {
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-always-show-dba@": "false",
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-meta-use-sys-schema@": "false",
+					"@dbeaver-meta-use-simple-constraints@": "false",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-use-meta-optimizer@": "false",
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native",
+				"handlers": {
+					"ssh_tunnel": {
+						"type": "TUNNEL",
+						"enabled": true,
+						"save-password": true,
+						"properties": {
+							"port": 3389,
+							"implementation": "jsch",
+							"host": "106.10.37.97",
+							"authType": "PASSWORD"
+						}
+					}
+				}
+			},
+			"custom-properties": {
+				"database.meta.separate.connection": "false"
+			}
+		},
+		"oracle_thin-173116761c0-2c85bf6544b1e674": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "Oracle - XE",
+			"save-password": true,
+			"show-system-objects": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "XE",
+				"url": "jdbc:oracle:thin:@//localhost:1521/XE",
+				"home": "C:\\oraclexe\\app\\oracle\\product\\11.2.0\\server",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-always-show-dba@": "false",
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-meta-use-sys-schema@": "false",
+					"@dbeaver-meta-use-simple-constraints@": "false",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-use-meta-optimizer@": "false",
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
+			},
+			"custom-properties": {
+				"database.meta.separate.connection": "false"
+			}
+		}
+	},
+	"virtual-models": {
+		"oracle_thin-173116761c0-2c85bf6544b1e674": {
+			"HR": {
+				"@properties": {
+					"erd.diagram.state": {
+						"serialized": "<diagram version=\"1\" name=\"HR\" time=\"202007281710\"><entities><data-source id=\"oracle_thin-173116761c0-2c85bf6544b1e674\"><entity id=\"1\" name=\"ANIMAL\" fq-name=\"HR.ANIMAL\" order=\"0\" x=\"20\" y=\"3445\"><path name=\"HR\"/></entity><entity id=\"2\" name=\"BOARD\" fq-name=\"HR.BOARD\" order=\"1\" x=\"356\" y=\"312\"><path name=\"HR\"/></entity><entity id=\"3\" name=\"BOARD_REPLY\" fq-name=\"HR.BOARD_REPLY\" order=\"2\" x=\"20\" y=\"203\"><path name=\"HR\"/></entity><entity id=\"4\" name=\"CITY\" fq-name=\"HR.CITY\" order=\"3\" x=\"1454\" y=\"1848\"><path name=\"HR\"/></entity><entity id=\"5\" name=\"CITY_PHOTO\" fq-name=\"HR.CITY_PHOTO\" order=\"4\" x=\"1098\" y=\"2326\"><path name=\"HR\"/></entity><entity id=\"6\" name=\"COM_APPLY\" fq-name=\"HR.COM_APPLY\" order=\"5\" x=\"356\" y=\"20\"><path name=\"HR\"/></entity><entity id=\"7\" name=\"COUNTRIES\" fq-name=\"HR.COUNTRIES\" order=\"6\" x=\"1454\" y=\"2499\"><path name=\"HR\"/></entity><entity id=\"8\" name=\"DAYS\" fq-name=\"HR.DAYS\" order=\"7\" x=\"726\" y=\"1726\"><path name=\"HR\"/></entity><entity id=\"9\" name=\"DAYS_DETAIL\" fq-name=\"HR.DAYS_DETAIL\" order=\"8\" x=\"356\" y=\"2041\"><path name=\"HR\"/></entity><entity id=\"10\" name=\"DEPARTMENTS\" fq-name=\"HR.DEPARTMENTS\" order=\"9\" x=\"726\" y=\"2485\"><path name=\"HR\"/></entity><entity id=\"11\" name=\"DEPT\" fq-name=\"HR.DEPT\" order=\"10\" x=\"356\" y=\"1097\"><path name=\"HR\"/></entity><entity id=\"12\" name=\"DESTINATION\" fq-name=\"HR.DESTINATION\" order=\"11\" x=\"1098\" y=\"1943\"><path name=\"HR\"/></entity><entity id=\"13\" name=\"EMP\" fq-name=\"HR.EMP\" order=\"12\" x=\"20\" y=\"943\"><path name=\"HR\"/></entity><entity id=\"14\" name=\"EMPLOYEES\" fq-name=\"HR.EMPLOYEES\" order=\"13\" x=\"356\" y=\"2490\"><path name=\"HR\"/></entity><entity id=\"15\" name=\"EMP_DETAILS_VIEW\" fq-name=\"HR.EMP_DETAILS_VIEW\" order=\"14\" x=\"726\" y=\"3263\"><path name=\"HR\"/></entity><entity id=\"16\" name=\"FESTIVAL\" fq-name=\"HR.FESTIVAL\" order=\"15\" x=\"356\" y=\"555\"><path name=\"HR\"/></entity><entity id=\"17\" name=\"FILES\" fq-name=\"HR.FILES\" order=\"16\" x=\"20\" y=\"390\"><path name=\"HR\"/></entity><entity id=\"18\" name=\"JOBS\" fq-name=\"HR.JOBS\" order=\"17\" x=\"726\" y=\"2785\"><path name=\"HR\"/></entity><entity id=\"19\" name=\"JOB_HISTORY\" fq-name=\"HR.JOB_HISTORY\" order=\"18\" x=\"20\" y=\"2574\"><path name=\"HR\"/></entity><entity id=\"20\" name=\"LOCATIONS\" fq-name=\"HR.LOCATIONS\" order=\"19\" x=\"1098\" y=\"2457\"><path name=\"HR\"/></entity><entity id=\"21\" name=\"MEMBER\" fq-name=\"HR.&quot;MEMBER&quot;\" order=\"20\" x=\"726\" y=\"192\"><path name=\"HR\"/></entity><entity id=\"22\" name=\"OWNER\" fq-name=\"HR.OWNER\" order=\"21\" x=\"356\" y=\"1256\"><path name=\"HR\"/></entity><entity id=\"23\" name=\"PERSON\" fq-name=\"HR.PERSON\" order=\"22\" x=\"356\" y=\"826\"><path name=\"HR\"/></entity><entity id=\"24\" name=\"PET2\" fq-name=\"HR.PET2\" order=\"23\" x=\"20\" y=\"1242\"><path name=\"HR\"/></entity><entity id=\"25\" name=\"PLAYER\" fq-name=\"HR.PLAYER\" order=\"24\" x=\"20\" y=\"2908\"><path name=\"HR\"/></entity><entity id=\"26\" name=\"POST\" fq-name=\"HR.POST\" order=\"25\" x=\"1098\" y=\"1436\"><path name=\"HR\"/></entity><entity id=\"27\" name=\"POST_DETAIL\" fq-name=\"HR.POST_DETAIL\" order=\"26\" x=\"726\" y=\"1436\"><path name=\"HR\"/></entity><entity id=\"28\" name=\"RECOMMEND\" fq-name=\"HR.RECOMMEND\" order=\"27\" x=\"726\" y=\"1595\"><path name=\"HR\"/></entity><entity id=\"29\" name=\"REGIONS\" fq-name=\"HR.REGIONS\" order=\"28\" x=\"1681\" y=\"2513\"><path name=\"HR\"/></entity><entity id=\"30\" name=\"REVIEWS\" fq-name=\"HR.REVIEWS\" order=\"29\" x=\"20\" y=\"732\"><path name=\"HR\"/></entity><entity id=\"31\" name=\"REVIEW_DAYS\" fq-name=\"HR.REVIEW_DAYS\" order=\"30\" x=\"356\" y=\"1714\"><path name=\"HR\"/></entity><entity id=\"32\" name=\"REVIEW_PHOTO\" fq-name=\"HR.REVIEW_PHOTO\" order=\"31\" x=\"20\" y=\"1798\"><path name=\"HR\"/></entity><entity id=\"33\" name=\"SALGRADE\" fq-name=\"HR.SALGRADE\" order=\"32\" x=\"356\" y=\"3445\"><path name=\"HR\"/></entity><entity id=\"34\" name=\"SCHEDULE\" fq-name=\"HR.SCHEDULE\" order=\"33\" x=\"1098\" y=\"1616\"><path name=\"HR\"/></entity><entity id=\"35\" name=\"STADIUM\" fq-name=\"HR.STADIUM\" order=\"34\" x=\"726\" y=\"2992\"><path name=\"HR\"/></entity><entity id=\"36\" name=\"TBL_BOARD\" fq-name=\"HR.TBL_BOARD\" order=\"35\" x=\"356\" y=\"1471\"><path name=\"HR\"/></entity><entity id=\"37\" name=\"TBL_REPLY\" fq-name=\"HR.TBL_REPLY\" order=\"36\" x=\"20\" y=\"1485\"><path name=\"HR\"/></entity><entity id=\"38\" name=\"TEAM\" fq-name=\"HR.TEAM\" order=\"37\" x=\"356\" y=\"2894\"><path name=\"HR\"/></entity><entity id=\"39\" name=\"USER\" fq-name=\"HR.&quot;USER&quot;\" order=\"38\" border-width=\"3\" x=\"1454\" y=\"1243\"><path name=\"HR\"/></entity></data-source></entities><relations><relation name=\"REPLY_NUM_FK\" fq-name=\"HR.BOARD_REPLY.REPLY_NUM_FK\" type=\"fk\" pk-ref=\"2\" fk-ref=\"3\"/><relation name=\"FILES_FK\" fq-name=\"HR.FILES.FILES_FK\" type=\"fk\" pk-ref=\"2\" fk-ref=\"17\"/><relation name=\"CITY_PHOTO_FK\" fq-name=\"HR.CITY_PHOTO.CITY_PHOTO_FK\" type=\"fk\" pk-ref=\"4\" fk-ref=\"5\"/><relation name=\"DESTINATION_FK\" fq-name=\"HR.DESTINATION.DESTINATION_FK\" type=\"fk\" pk-ref=\"4\" fk-ref=\"12\"/><relation name=\"POST_FK2\" fq-name=\"HR.POST.POST_FK2\" type=\"fk\" pk-ref=\"4\" fk-ref=\"26\"/><relation name=\"SCHEDULE_FK1\" fq-name=\"HR.SCHEDULE.SCHEDULE_FK1\" type=\"fk\" pk-ref=\"4\" fk-ref=\"34\"/><relation name=\"LOC_C_ID_FK\" fq-name=\"HR.LOCATIONS.LOC_C_ID_FK\" type=\"fk\" pk-ref=\"7\" fk-ref=\"20\"/><relation name=\"COM_APPLY_FK1\" fq-name=\"HR.COM_APPLY.COM_APPLY_FK1\" type=\"fk\" pk-ref=\"8\" fk-ref=\"6\"/><relation name=\"DAYS_DETAIL_FK1\" fq-name=\"HR.DAYS_DETAIL.DAYS_DETAIL_FK1\" type=\"fk\" pk-ref=\"8\" fk-ref=\"9\"/><relation name=\"REVIEW_DAYS_FK2\" fq-name=\"HR.REVIEW_DAYS.REVIEW_DAYS_FK2\" type=\"fk\" pk-ref=\"8\" fk-ref=\"31\"/><relation name=\"EMP_DEPT_FK\" fq-name=\"HR.EMPLOYEES.EMP_DEPT_FK\" type=\"fk\" pk-ref=\"10\" fk-ref=\"14\"/><relation name=\"JHIST_DEPT_FK\" fq-name=\"HR.JOB_HISTORY.JHIST_DEPT_FK\" type=\"fk\" pk-ref=\"10\" fk-ref=\"19\"/><relation name=\"FK_DEPTNO\" fq-name=\"HR.EMP.FK_DEPTNO\" type=\"fk\" pk-ref=\"11\" fk-ref=\"13\"/><relation name=\"DAYS_DETAIL_FK2\" fq-name=\"HR.DAYS_DETAIL.DAYS_DETAIL_FK2\" type=\"fk\" pk-ref=\"12\" fk-ref=\"9\"/><relation name=\"RECOMMEND_FK2\" fq-name=\"HR.RECOMMEND.RECOMMEND_FK2\" type=\"fk\" pk-ref=\"12\" fk-ref=\"28\"/><relation name=\"DEPT_MGR_FK\" fq-name=\"HR.DEPARTMENTS.DEPT_MGR_FK\" type=\"fk\" pk-ref=\"14\" fk-ref=\"10\"/><relation name=\"EMP_MANAGER_FK\" fq-name=\"HR.EMPLOYEES.EMP_MANAGER_FK\" type=\"fk\" pk-ref=\"14\" fk-ref=\"14\"><bend type=\"rel\" x=\"592\" y=\"2841\"/><bend type=\"rel\" x=\"450\" y=\"2929\"/></relation><relation name=\"JHIST_EMP_FK\" fq-name=\"HR.JOB_HISTORY.JHIST_EMP_FK\" type=\"fk\" pk-ref=\"14\" fk-ref=\"19\"/><relation name=\"SEASON_FK\" fq-name=\"HR.REVIEWS.SEASON_FK\" type=\"fk\" pk-ref=\"16\" fk-ref=\"30\"/><relation name=\"EMP_JOB_FK\" fq-name=\"HR.EMPLOYEES.EMP_JOB_FK\" type=\"fk\" pk-ref=\"18\" fk-ref=\"14\"/><relation name=\"JHIST_JOB_FK\" fq-name=\"HR.JOB_HISTORY.JHIST_JOB_FK\" type=\"fk\" pk-ref=\"18\" fk-ref=\"19\"/><relation name=\"DEPT_LOC_FK\" fq-name=\"HR.DEPARTMENTS.DEPT_LOC_FK\" type=\"fk\" pk-ref=\"20\" fk-ref=\"10\"/><relation name=\"BOARD_FK\" fq-name=\"HR.BOARD.BOARD_FK\" type=\"fk\" pk-ref=\"21\" fk-ref=\"2\"/><relation name=\"REPLY_MEMBER_FK\" fq-name=\"HR.BOARD_REPLY.REPLY_MEMBER_FK\" type=\"fk\" pk-ref=\"21\" fk-ref=\"3\"/><relation name=\"PET_FK\" fq-name=\"HR.PET2.PET_FK\" type=\"fk\" pk-ref=\"22\" fk-ref=\"24\"/><relation name=\"PERSON_FK\" fq-name=\"HR.REVIEWS.PERSON_FK\" type=\"fk\" pk-ref=\"23\" fk-ref=\"30\"/><relation name=\"POST_DETAIL_FK\" fq-name=\"HR.POST_DETAIL.POST_DETAIL_FK\" type=\"fk\" pk-ref=\"26\" fk-ref=\"27\"/><relation name=\"COUNTR_REG_FK\" fq-name=\"HR.COUNTRIES.COUNTR_REG_FK\" type=\"fk\" pk-ref=\"29\" fk-ref=\"7\"/><relation name=\"REVIEW_PHOTO_FK\" fq-name=\"HR.REVIEW_PHOTO.REVIEW_PHOTO_FK\" type=\"fk\" pk-ref=\"31\" fk-ref=\"32\"/><relation name=\"DAYS_FK\" fq-name=\"HR.DAYS.DAYS_FK\" type=\"fk\" pk-ref=\"34\" fk-ref=\"8\"/><relation name=\"TEAM_FK\" fq-name=\"HR.TEAM.TEAM_FK\" type=\"fk\" pk-ref=\"35\" fk-ref=\"38\"/><relation name=\"FK_REPLY_BOARD\" fq-name=\"HR.TBL_REPLY.FK_REPLY_BOARD\" type=\"fk\" pk-ref=\"36\" fk-ref=\"37\"/><relation name=\"PLAYER_FK\" fq-name=\"HR.PLAYER.PLAYER_FK\" type=\"fk\" pk-ref=\"38\" fk-ref=\"25\"/><relation name=\"COM_APPLY_FK2\" fq-name=\"HR.COM_APPLY.COM_APPLY_FK2\" type=\"fk\" pk-ref=\"39\" fk-ref=\"6\"><bend type=\"abs\" x=\"726\" y=\"140\"/><bend type=\"abs\" x=\"1098\" y=\"140\"/></relation><relation name=\"COM_APPLY_FK3\" fq-name=\"HR.COM_APPLY.COM_APPLY_FK3\" type=\"fk\" pk-ref=\"39\" fk-ref=\"6\"><bend type=\"abs\" x=\"726\" y=\"161\"/><bend type=\"abs\" x=\"1098\" y=\"161\"/></relation><relation name=\"POST_FK1\" fq-name=\"HR.POST.POST_FK1\" type=\"fk\" pk-ref=\"39\" fk-ref=\"26\"/><relation name=\"RECOMMEND_FK1\" fq-name=\"HR.RECOMMEND.RECOMMEND_FK1\" type=\"fk\" pk-ref=\"39\" fk-ref=\"28\"/><relation name=\"REVIEW_DAYS_FK1\" fq-name=\"HR.REVIEW_DAYS.REVIEW_DAYS_FK1\" type=\"fk\" pk-ref=\"39\" fk-ref=\"31\"><bend type=\"abs\" x=\"726\" y=\"1405\"/><bend type=\"abs\" x=\"1098\" y=\"1405\"/></relation><relation name=\"SCHEDULE_FK2\" fq-name=\"HR.SCHEDULE.SCHEDULE_FK2\" type=\"fk\" pk-ref=\"39\" fk-ref=\"34\"/></relations></diagram>"
+					}
+				},
+				":USER": {
+					"properties": {
+						"erd.diagram.state": {
+							"serialized": "<diagram version=\"1\" name=\"USER\" time=\"202007281709\"><entities><data-source id=\"oracle_thin-173116761c0-2c85bf6544b1e674\"><entity id=\"1\" name=\"USER\" fq-name=\"HR.&quot;USER&quot;\" order=\"0\" color-bg=\"255,128,64\" x=\"392\" y=\"324\"><path name=\"HR\"/></entity><entity id=\"2\" name=\"COM_APPLY\" fq-name=\"HR.COM_APPLY\" order=\"1\" x=\"20\" y=\"20\"><path name=\"HR\"/></entity><entity id=\"3\" name=\"POST\" fq-name=\"HR.POST\" order=\"2\" x=\"20\" y=\"291\"><path name=\"HR\"/></entity><entity id=\"4\" name=\"RECOMMEND\" fq-name=\"HR.RECOMMEND\" order=\"3\" x=\"20\" y=\"450\"><path name=\"HR\"/></entity><entity id=\"5\" name=\"REVIEW_DAYS\" fq-name=\"HR.REVIEW_DAYS\" order=\"4\" x=\"20\" y=\"581\"><path name=\"HR\"/></entity><entity id=\"6\" name=\"SCHEDULE\" fq-name=\"HR.SCHEDULE\" order=\"5\" x=\"20\" y=\"908\"><path name=\"HR\"/></entity></data-source></entities><relations><relation name=\"COM_APPLY_FK2\" fq-name=\"HR.COM_APPLY.COM_APPLY_FK2\" type=\"fk\" pk-ref=\"1\" fk-ref=\"2\"/><relation name=\"COM_APPLY_FK3\" fq-name=\"HR.COM_APPLY.COM_APPLY_FK3\" type=\"fk\" pk-ref=\"1\" fk-ref=\"2\"/><relation name=\"POST_FK1\" fq-name=\"HR.POST.POST_FK1\" type=\"fk\" pk-ref=\"1\" fk-ref=\"3\"/><relation name=\"RECOMMEND_FK1\" fq-name=\"HR.RECOMMEND.RECOMMEND_FK1\" type=\"fk\" pk-ref=\"1\" fk-ref=\"4\"/><relation name=\"REVIEW_DAYS_FK1\" fq-name=\"HR.REVIEW_DAYS.REVIEW_DAYS_FK1\" type=\"fk\" pk-ref=\"1\" fk-ref=\"5\"/><relation name=\"SCHEDULE_FK2\" fq-name=\"HR.SCHEDULE.SCHEDULE_FK2\" type=\"fk\" pk-ref=\"1\" fk-ref=\"6\"/></relations></diagram>"
+						}
+					}
+				}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false
+		}
+	}
+}

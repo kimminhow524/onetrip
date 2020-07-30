@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.onetrip.app.user.dao.UserBean" alias="userBean"/>
+		<typeAlias type="com.onetrip.app.com_apply.dao.Com_Apply_Bean" alias="acomBean"/>
+		<typeAlias type="com.onetrip.app.post.dao.PostBean" alias="postBean"/>
+		<typeAlias type="com.onetrip.app.post_detail.dao.Post_Detail_Bean" alias="post_detail_bean"/>
+		<typeAlias type="com.onetrip.app.city.dao.CityBean" alias="cityBean"/>
+		<typeAlias type="com.onetrip.app.destination.dao.DestinationBean" alias="destinationBean"/>
+		<typeAlias type="com.onetrip.app.schedule.dao.ScheduleBean" alias="scheduleBean"/>
+		<typeAlias type="com.onetrip.app.days.dao.DaysBean" alias="daysBean"/>
+		<typeAlias type="com.onetrip.app.city_photo.dao.City_Photo_Bean" alias="city_Photo_Bean"/>
+		<typeAlias type="com.onetrip.app.days_detail.dao.Days_Detail_Bean" alias="daysdetailBean"/>
+		<typeAlias type="com.onetrip.app.review_days.dao.Review_Days_Bean" alias="review_Days_Bean"/>
+		<typeAlias type="com.onetrip.app.review_days_detail.dao.Review_Days_Detail_Bean" alias="review_Days_Detail_Bean"/>
+		<typeAlias type="com.onetrip.app.review_photo.dao.Review_Photo_Bean" alias="review_Photo_Bean"/>
+	</typeAliases>
+
+
+	<environments default ="development">
+		<environment id ="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.OracleDriver"/>
+			<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+				<property name="username" value="hr"/>
+				<property name="password" value="hr"/> 
+		
+				
+		<!--  <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE"/>
+				<property name="username" value="HR"/>
+				<property name="password" value="1234"/> --> 
+			</dataSource>
+		</environment>
+	</environments>
+	
+	
+	<mappers>
+		<mapper resource ="com/onetrip/sql/city_photo.xml"/>
+		<mapper resource ="com/onetrip/sql/city.xml"/>
+		<mapper resource ="com/onetrip/sql/com_apply.xml"/>
+		<mapper resource ="com/onetrip/sql/days_detail.xml"/>
+		<mapper resource ="com/onetrip/sql/days.xml"/>
+		<mapper resource ="com/onetrip/sql/destination.xml"/>
+		<mapper resource ="com/onetrip/sql/post_detail.xml"/>
+		<mapper resource ="com/onetrip/sql/post.xml"/>
+		<mapper resource ="com/onetrip/sql/recommend.xml"/>
+		<mapper resource ="com/onetrip/sql/review_days.xml"/>
+		<mapper resource ="com/onetrip/sql/review_photo.xml"/>
+		<mapper resource ="com/onetrip/sql/schedule.xml"/>
+		<mapper resource ="com/onetrip/sql/user.xml"/>
+	</mappers>
+	
+</configuration>

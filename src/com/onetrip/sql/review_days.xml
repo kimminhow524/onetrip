@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Review">
+	<select id="getInfo" parameterType="map" resultType="review_Days_Bean">
+		SELECT * FROM REVIEW_DAYS WHERE
+		REVIEW_DAYS_N = ${day} AND REVIEW_DAYS_SCHEDULE_NUM = ${scheduleNum}
+		ORDER BY REVIEW_DAYS_NUM ASC
+	</select>
+
+	<select id="getDaysNum" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW_DAYS WHERE
+		REVIEW_DAYS_SCHEDULE_NUM = ${scheduleNum} 
+	</select>
+	<select id="checkDayexist" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM DAYS WHERE
+		DAYS_SCHEDULE_NUM = ${scheduleNum} AND DAYS_N =${day}
+	</select>
+
+	<select id="getDestNumList" parameterType="map" resultType="_int">
+		SELECT DAYS_DETAIL_DESTINATION_NUM FROM DAYS_DETAIL WHERE
+		DAYS_DETAIL_N = ${day} AND DAYS_DETAIL_SCHEDULE_NUM = ${scheduleNum}
+		ORDER BY DAYS_DETAIL_ORDER ASC
+	</select>
+	
+	
+	<select id="getPhoto" parameterType="map" resultType="String">
+		SELECT REVIEW_PHOTO_NAME FROM REVIEW_PHOTO WHERE
+		REVIEW_DAYS_N = ${day} AND REVIEW_DAYS_SCHEDULE_NUM = ${scheduleNum}
+	</select>
+	<select id="getReviewTitle" parameterType="_int" resultType="String">
+		SELECT SCHEDULE_NAME FROM SCHEDULE WHERE
+		SCHEDULE_NUM =${scheduleNum}
+	</select>
+	
+	<select id="getPhotoList" parameterType="_int" resultType="review_Photo_Bean">
+		SELECT * FROM REVIEW_PHOTO WHERE REVIEW_DAYS_SCHEDULE_NUM = ${scheduleNum}
+	</select>
+	<select id="recommendCheck" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM RECOMMEND WHERE
+		 RECOMMEND_USER_ID = #{user_id} AND RECOMMEND_DESTINATION_NUM = ${recommendDestNum}
+	</select>
+	<select id="getScheduleNumList"  resultType="_int">
+		SELECT DISTINCT REVIEW_DAYS_SCHEDULE_NUM FROM REVIEW_DAYS WHERE REVIEW_DAYS_OPEN_CHECK = 0
+	</select>
+	<select id="getMyScheduleNumList" parameterType="String" resultType="_int">
+		SELECT DISTINCT REVIEW_DAYS_SCHEDULE_NUM FROM REVIEW_DAYS WHERE REVIEW_DAYS_USER_ID = #{id} AND REVIEW_DAYS_OPEN_CHECK = 0
+	</select>
+	<select id="getMyscheduleWriteList" parameterType="String" resultType="_int">
+		SELECT DISTINCT S.SCHEDULE_NUM FROM SCHEDULE S LEFT OUTER JOIN REVIEW_DAYS RD ON S.SCHEDULE_NUM = RD.REVIEW_DAYS_SCHEDULE_NUM
+		WHERE S.SCHEDULE_USER_ID = #{id} AND RD.REVIEW_DAYS_SCHEDULE_NUM IS NULL
+	</select>
+	<select id="dupCheck" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW_DAYS WHERE
+		REVIEW_DAYS_N=${day} AND REVIEW_DAYS_SCHEDULE_NUM=${scheduleNum} AND REVIEW_DAYS_NUM=${daysNum}
+	</select>
+	
+	<delete id="deleteReview" parameterType="_int">
+		DELETE FROM REVIEW_DAYS WHERE REVIEW_DAYS_SCHEDULE_NUM = ${scheduleNum}
+		
+	</delete>
+	
+	<update id="updateReview" parameterType="review_Days_Bean">
+	
+        UPDATE HR.REVIEW_DAYS
+        SET REVIEW_DAYS_USER_ID = #{review_days_user_id}, REVEIW_DAYS_TITLE= #{review_days_title} , REVIEW_DAYS_CONTENT= #{review_days_content} , REVIEW_DAYS_UPDATE_TIME=SYSDATE, REVIEW_DAYS_VIEWS=REVIEW_DAYS_VIEWS, REVIEW_DAYS_OPEN_CHECK=${review_days_open_check}
+        WHERE REVIEW_DAYS_N=${review_days_n} AND REVIEW_DAYS_SCHEDULE_NUM=${review_days_schedule_num} AND REVIEW_DAYS_NUM=${review_days_num}
+        
+        
+	</update>
+	<insert id="insertReview" parameterType="review_Days_Bean">
+        
+        INSERT INTO REVIEW_DAYS
+        (REVIEW_DAYS_N, REVIEW_DAYS_SCHEDULE_NUM, REVIEW_DAYS_NUM,REVIEW_DAYS_USER_ID, REVIEW_DAYS_TITLE, REVIEW_DAYS_CONTENT, REVIEW_DAYS_UPDATE_TIME, REVIEW_DAYS_VIEWS, REVIEW_DAYS_OPEN_CHECK)
+        VALUES(${review_days_n}, ${review_days_schedule_num}, ${review_days_num}, #{review_days_user_id}, #{review_days_title}, #{review_days_content}, SYSDATE, 0, ${review_days_open_check})
+
+	</insert>
+	<insert id="updateRecommend" parameterType="map">
+		INSERT INTO RECOMMEND
+		(RECOMMEND_USER_ID, RECOMMEND_DESTINATION_NUM)
+		VALUES(#{user_id}, ${recommendDestNum})
+	</insert>
+	
+</mapper>

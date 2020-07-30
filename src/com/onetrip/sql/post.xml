@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Post">
+	<select id="listAll" parameterType="_int" resultType="postBean">
+		SELECT * FROM
+			(SELECT ROWNUM R, D.* FROM
+				(SELECT * FROM POST WHERE POST_CITY_NUM = ${city_num} ORDER BY POST_NUM DESC) D)B
+				WHERE B.R BETWEEN ${startRow} AND ${endRow}		
+	</select>
+	<select id="getDetail" parameterType="_int" resultType="post_detail_bean">
+		SELECT * FROM POST_DETAIL WHERE POST_NUM = ${post_num}
+	</select>
+	<insert id="insertPost" parameterType="postBean">
+		INSERT INTO POST
+		VALUES(
+			POST_SEQ.NEXTVAL, 'post_user_id', ${post_city_num}
+		)
+	</insert>
+	<insert id="insertPostDetail" parameterType="String">
+		INSERT INTO POST_DETAIL
+		VALUES(
+			POST_SEQ.CURRVAL, TO_DATE(SYSDATE,'YYYY-MM-DD hh24:mi:ss'), #{post_contents}
+		)
+	</insert>
+	<select id="postCnt" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM POST where POST_CITY_NUM =${post_city_num}
+	</select>
+	<delete id="deleteOnePost" parameterType="_int">
+		DELETE FROM POST WHERE POST_NUM = ${post_num}
+	</delete>
+	<delete id="deleteOnePostDetail" parameterType="_int">
+		DELETE FROM POST_DETAIL WHERE POST_NUM = ${post_num}
+	</delete>
+	<update id="updatePost" parameterType="map">
+		UPDATE POST_DETAIL
+		SET POST_CONTENTS = #{post_contents}
+		WHERE POST_NUM = ${post_num}
+	</update>
+</mapper>

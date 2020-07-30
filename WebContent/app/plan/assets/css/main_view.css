@@ -1,0 +1,217 @@
+@import url(fontawesome-all.min.css);
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
+
+body{
+	margin:0;
+}
+#wrapper{
+	width: 100%;
+	height: 100vh;
+	margin :0;
+	padding: 0;
+}
+
+#wrapper #title{
+	display:flex;
+	width: 100%;
+	height: 64px;
+	margin :0;
+	align-items:center;
+	justify-content: space-between;	
+}
+
+#title > div{
+	display:inline-block;
+	align-items:center;
+}
+#title > div > a{
+	height: 30%;
+	margin: 0 1em 0 1em;
+}
+#submit_bt{
+	width : 89px;
+	height: 35px;
+	background-color: #ff9320;
+	color: white;
+	text-align: center;
+	line-height: 35px;
+}
+#wrapper #view{
+	width: 100%;
+	height:100%;
+	top:64px;
+}
+
+#view #search_citys{
+	float:left;
+	height: 100%;
+	width:14em;
+}
+
+	#lo_tag{
+		text-align: center;
+	}
+	#lo_tag > div{
+		display: inline;
+	}
+	
+	#lo_lists{
+		display: flex;
+		width :100%;
+		height : 100%;
+		flex-direction: column;
+		overflow: auto;
+	}
+	#lo_lists #location{
+		display: flex;
+		width: 100%;
+		height: 10%;
+		align-items: center;
+		border-bottom: solid #a7a7a7 1px;
+	}
+	#location > div{
+		display: inline;
+		margin: 0.5em 0.5em 0.5em 0.5em;
+	}
+	#location #img{
+		display:flex;
+		align-items:center;
+		margin: 0.5em 0.5em 0.5em 0.5em;
+	}
+	#img > img{
+		width: 65px;
+		height: 55px;
+	}
+	
+	#location > div > div{
+		display: inline;
+	}
+	#nation > ul > li{
+		font-size: 10px;
+	}
+	
+	#nation > ul > li > img{
+		width: 90%;
+		height: 5%;
+	}
+	#search_bar{
+		display:flex;
+		align-items:center;
+		width: 100%;
+		height : 10%;
+	}
+	#search_bar .search_area{
+		display:block;
+		margin: 0 auto;
+	}
+
+#view .days{
+	float:left;
+	height: 100%;
+	width: 14em;
+	text-align: center;
+}
+	.days #day_list_title{
+		display : flex;
+		justify-content:space-between;
+		width: 100%;
+		height: 50px;
+		align-items:center;
+		background:#707070;
+		font-size: 16px;
+		color: white;
+	}
+	#day_list_title > div{
+		height: 100%;
+	}
+	#day_list_title > div > a{
+		font-size: 14pt;
+	}
+	.days .location{
+		width: 100%;
+		height: 10%;
+	}
+	.days .location > div > img{
+		float:left;
+		width: 60px;
+		height: 55px;
+		border: solid #a7a7a7 1px;
+	}
+
+#right_view{
+	position:absolute;
+	left:28em;
+	width:100%;
+	height: 100%;
+}
+
+#view #map{
+	position:absolute;
+	width:100%;
+	height:100%;
+	background-color: black;
+}
+
+#view #select_city{
+	display:block;
+	position:absolute;
+	width: 250px;
+	height: 200px;
+	left: 10px;
+	top: 10px;
+	background-color:orange;
+	border-radius: 5px;
+}
+
+#view #map{
+	position:absolute;
+	width:100%;
+	height:100%;
+	background-color: black;
+}
+#search_destName{
+	font-family: auto;
+	font-weight: bold;
+	color: #b3b3b3;
+	font-size: 10pt;
+}
+#day_num{
+	display:flex;
+	align-items:center;
+	text-align:center;
+	font-family: auto;
+	font-weight: bold;
+	color: white;
+	font-size: 16pt;
+}
+
+#prev_w{
+	display:flex;
+	align-items:center;
+	text-align:center;
+	font-family: auto;
+	font-weight: bold;
+	color: white;
+}
+#next_w{
+	display:flex;
+	align-items:center;
+	text-align:center;
+	font-family: auto;
+	font-weight: bold;
+	color: white;
+}
+
+#next_w > a{
+	font-size: 10pt;
+}
+#day_dest{
+	display: flex;
+	width:100%;
+	align-items: center;
+	border-bottom: solid #a7a7a7 1px;
+	margin: 0;
+}
+#dest_name{
+	margin: 0 1em 0 1em;
+}

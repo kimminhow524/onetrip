@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- if(days_list_check 가 일정 중 하나라도 true) => 동행 리스트에 해당 일정 올리기 / sql : insert companion(#{}, #{}, #{},...) -->
+
+<mapper namespace="Com_Apply">
+	<!--동행 목록-->
+	<select id="getListCnt" resultType="_int">
+		SELECT COUNT(DISTINCT DAYS_SCHEDULE_NUM) FROM DAYS WHERE DAYS_LIST_CHECK = 1
+	</select>
+	
+	<select id="getAcomList" parameterType="map" resultType="map">
+		SELECT * FROM 
+			(SELECT * FROM 
+					(SELECT ROWNUM R, s.SCHEDULE_NUM, s.SCHEDULE_NAME, s.SCHEDULE_USER_ID, s.SCHEDULE_CITY_NUM, s.SCHEDULE_DEPARTURE FROM SCHEDULE s 
+					WHERE s.SCHEDULE_NUM IN 
+						(SELECT DISTINCT DAYS_SCHEDULE_NUM FROM DAYS WHERE DAYS_LIST_CHECK =1)
+					) D JOIN CITY_PHOTO CP
+			ON D.SCHEDULE_CITY_NUM= CP.CITY_NUM
+			ORDER BY D.SCHEDULE_DEPARTURE) ACOMD
+		WHERE ACOMD.R BETWEEN ${startRow} AND ${endRow}
+	</select>
+	
+	<!--동행 검색 목록_도시명으로-->
+	<select id="checkCityNum" parameterType="string" resultType="_int">
+	 	SELECT CITY_NUM FROM CITY WHERE CITY_NAME=#{search}
+	</select>
+
+	<select id="getSearchListCnt" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM
+			(SELECT s.SCHEDULE_CITY_NUM city_num, s.SCHEDULE_NUM FROM SCHEDULE s 
+			WHERE s.SCHEDULE_NUM  IN (SELECT DISTINCT DAYS_SCHEDULE_NUM FROM DAYS WHERE DAYS_LIST_CHECK = 1)
+			) D
+		WHERE D.city_num=${city_num}
+		
+	</select>
+	
+	<select id="getAcomByCity" parameterType="map" resultType="map">
+		SELECT * FROM 
+			(SELECT * FROM 
+					(SELECT ROWNUM R, s.SCHEDULE_NUM, s.SCHEDULE_NAME, s.SCHEDULE_USER_ID, s.SCHEDULE_CITY_NUM, s.SCHEDULE_DEPARTURE FROM SCHEDULE s 
+					WHERE (s.SCHEDULE_NUM IN 
+						(SELECT DISTINCT DAYS_SCHEDULE_NUM FROM DAYS WHERE DAYS_LIST_CHECK =1)) AND (s.SCHEDULE_CITY_NUM=${city_num})
+					) D JOIN CITY_PHOTO CP
+			ON D.SCHEDULE_CITY_NUM= CP.CITY_NUM
+			ORDER BY D.SCHEDULE_DEPARTURE) ACOMD
+		WHERE ACOMD.R BETWEEN ${startRow} AND ${endRow}
+	</select>
+
+	<!--동행 신청 내역 상세보기-->
+	<select id="getAcomDetails" parameterType="_int" resultType="acomBean">
+		SELECT * FROM COM_APPLY
+		WHERE COM_APPLY_NUM=${com_apply_num}
+	</select>
+	<!--동행 중복신청 확인-->
+	<select id="checkAcomDup" parameterType="acomBean" resultType="_int">
+		SELECT COUNT(*) FROM COM_APPLY
+		WHERE COM_APPLY_DAYS_N=${com_apply_days_n} AND COM_APPLY_SCHEDULE_NUM=${com_apply_schedule_num}
+		AND COM_APPLY_MEMBER_ID=#{com_apply_member_id}
+	</select>
+	
+	<!--동행 신청 -->
+	<insert id="applyAcom" parameterType="acomBean">
+		INSERT INTO COM_APPLY
+		VALUES(COMPANION_SEQ.NEXTVAL, ${com_apply_days_n}, ${com_apply_schedule_num}, #{com_apply_host_id}, #{com_apply_member_id}, 0, 0)
+	</insert>
+	
+	<!--동행 신청 취소/ 마이페이지 목록에서 실행-->
+	<update id="cancelAcom" parameterType="_int">
+		UPDATE COM_APPLY
+		SET COM_APPLY_MEMBER_STATUS=-1
+		WHERE COM_APPLY_NUM=${com_apply_num}
+	</update>
+	
+	<!-- 해당 일정의 동행 관련 상태 정보(목록 표출/ 동행 확정)-->
+	<select id="checkAcomStatus" parameterType="map" resultType="daysBean">
+		 SELECT * FROM DAYS WHERE DAYS_SCHEDULE_NUM=${schedule_num} AND DAYS_N=${days_n}
+	</select>
+	
+	<!--신청 내역 진행 현황(수락/거절, 신청/취소) 확인 -->
+	<select id="getApplicationStatus" parameterType="_int" resultType="map">
+		SELECT COM_APPLY_HOST_STATUS, COM_APPLY_MEMBER_STATUS FROM COM_APPLY
+		WHERE COM_APPLY_NUM=${com_apply_num}
+	</select>
+	
+	<!-- * 내가 신청한 동행목록 띄우기(수락/거절, 신청/취소 여부 확인 목적) -->
+	<select id="getMemberAcomList" parameterType="string" resultType="map">
+		SELECT cp.CITY_PHOTO_NAME , D.*
+		FROM CITY_PHOTO cp JOIN
+					(SELECT s.SCHEDULE_NAME, s.SCHEDULE_CITY_NUM city_Num, AC.* 
+					FROM SCHEDULE s,
+						(SELECT COM_APPLY_NUM, COM_APPLY_HOST_STATUS, COM_APPLY_MEMBER_STATUS,COM_APPLY_SCHEDULE_NUM schedule_Num 
+						FROM COM_APPLY WHERE COM_APPLY_MEMBER_ID = #{session_id, jdbcType=VARCHAR} ORDER BY COM_APPLY_NUM) AC 
+					WHERE s.SCHEDULE_NUM =AC.schedule_Num) D
+		ON cp.CITY_NUM = D.city_Num 
+	</select>
+	
+	<!-- * 내가 호스트인 동행목록 띄우기(수락/거절, 신청/취소 여부 확인 목적) -->
+	<select id="getHostAcomList" parameterType="string" resultType="acomBean">
+		SELECT * FROM COM_APPLY
+		WHERE COM_APPLY_HOST_ID=${com_apply_host_id}
+	</select>
+	
+	<!-- * host가 동행 리스트에서 내리기 -->
+	<update id="getOffAcomList" parameterType="_int">
+		UPDATE DAYS d, COM_APPLY ca
+		SET d.DAYS_COMPANION_CHECK = 1 AND d.DAYS_LIST_CHECK = 0 
+		WHERE ca.COM_APPLY_NUM=${acomNum}
+	</update>
+	
+	<!--host 동행 신청 수락/거절 -->
+	<update id="checkAcom_ByHost" parameterType="map">
+		UPDATE COM_APPLY
+		SET COM_APPLY_HOST_STATUS=${status}, COM_APPLY_MEMBER_STATUS=-1
+		WHERE COM_APPLY_NUM=${acomNum}
+	</update>
+	
+	<!-- * 동행신청 내역 삭제 -->
+	<delete id="deleteAcom" parameterType="_int">
+		DELETE FROM COM_APPLY
+		WHERE COM_APPLY_NUM=${acomNum}
+	</delete>
+</mapper>

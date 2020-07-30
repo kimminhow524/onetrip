@@ -1,0 +1,154 @@
+
+#floatMenu {
+	position: absolute;
+	margin: 0 auto;
+	top: 660px;
+	text-align: center;
+	width:450px;
+	height:450px;
+}
+
+table, tr, td {
+	border: 2px solid;
+}
+
+.mapicon{
+	text-align: center;
+	padding:2px;
+	width:30px;
+	height:30px;
+}
+
+.infoicon{
+	padding:2px;
+	text-align: center;
+	width:30px;
+	height:30px;
+}
+
+.location{
+	padding: 1px 50px;
+}
+
+.days-num{
+	
+	padding-left:20px;
+	text-align:left;	
+}
+ 
+input[type="button"], input[type="submit"], input[type="reset"], button, .button {
+    position: relative;
+    display: inline-block;
+    background: #70c98c;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.5em;
+    padding: 0px;
+    cursor: pointer;
+    outline: 0;
+}
+
+
+.com-apply{
+	font-size:14px;
+	/* margin-right: 1px;
+	margin-left: 1px; */
+}
+
+
+
+
+@media screen and (min-width: 1281px) and (max-width: 1680px) {
+#floatMenu {
+	position: absolute;
+	margin: 0 auto;
+	top: 500px;
+	text-align: center;
+	width: 400px;
+	height:400px;
+	
+}	
+
+	
+	
+
+.com-apply{
+	font-size:14px;
+	margin-right: 1px;
+	margin-left: 1px;
+}
+
+}
+
+@media screen and (min-width: 841px) and (max-width: 1280px) {
+#floatMenu {
+	position: absolute;
+	margin: 0 auto;
+	top: 500px;
+	text-align: center;
+	width: 280px;
+	height: 280px;
+}
+
+
+.com-apply{
+	font-size:14px;
+	margin-right: 1px;
+	margin-left: 1px;
+}
+}
+@media screen and (min-width: 737px) and (max-width: 840px) {
+#floatMenu {
+	position: absolute;
+	margin: 0 auto;
+	top: 500px;
+	text-align: center;
+	width: 250px;
+	height:250px;
+	
+}
+
+.days-num{
+	
+	padding:0px;
+	text-align:center;
+}
+.com-apply{
+	font-size:14px;
+	margin-right: 1px;
+	margin-left: 1px;
+}
+
+}
+
+
+
+/* Mobile */
+@media screen and (max-width: 736px) {
+
+.row > .col-12-mobile {
+    width: 100%;
+}
+
+ #floatMenu{
+ 	width: 300px; 
+  	height: 300px;
+	position:static;
+	margin: 0 auto;
+	}
+
+.days-num{
+	
+	padding:0px;
+	text-align:center;
+}
+
+
+.com-apply{
+	font-size:14px;
+	margin-right: 1px;
+	margin-left: 0;
+	width:50%;
+}
+
+}

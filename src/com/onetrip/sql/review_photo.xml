@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Review_photo">
+	<delete id="deletePhotos" parameterType="_int">
+		DELETE FROM REVIEW_PHOTO WHERE REVIEW_DAYS_SCHEDULE_NUM = ${scheduleNum}
+	</delete>
+
+	<insert id="insertFile" parameterType="map">
+		INSERT INTO REVIEW_PHOTO
+		(REVIEW_PHOTO_NAME, REVIEW_DAYS_N, REVEIW_DAYS_SCHEDULE_NUM, REVIEW_DAYS_NUM)
+		VALUES(#{photo_name}, ${day}, ${scheduleNum}, ${daysNum});
+	</insert>
+	
+</mapper>

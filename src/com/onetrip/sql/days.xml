@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Days">
+	
+	<insert id="insertDays" parameterType="daysBean">
+		INSERT INTO DAYS
+		VALUES(
+			#{days_n}, #{days_schedule_num}, #{days_list_check}, 
+			#{days_companion_check}, #{day_city_num}
+			)
+	</insert>
+	
+	
+	<select id="listCheck" parameterType="_int" resultType="_int">
+		SELECT DAYS_LIST_CHECK FROM DAYS WHERE DAYS_SCHEDULE_NUM = #{days_schedule_num}
+	</select>
+	
+	<select id="companionCheck" parameterType="_int" resultType="_int">
+		SELECT DAYS_COMPANION_CHECK FROM DAYS WHERE DAYS_SCHEDULE_NUM = #{days_schedule_num}
+	</select>
+	
+	<delete id="deleteDays" parameterType="_int">
+		DELETE FROM DAYS WHERE DAYS_SCHEDULE_NUM = ${days_schedule_num}
+	</delete>
+	
+	<update id="updateListCheck" parameterType="_int">
+		UPDATE DAYS
+		SET DAYS_LIST_CHECK = #{days_list_check}
+		WHERE DAYS_SCHEDULE_NUM = ${days_schedule_num}
+	</update>
+	
+	<update id="updateCompanionCheck" parameterType="_int">
+		UPDATE DAYS
+		SET DAYS_COMPANION_CHECK = #{days_companion_check}
+		WHERE DAYS_SCHEDULE_NUM = ${days_schedule_num}
+	</update>
+		
+	<select id="getDetailBysc" parameterType="_int" resultType="_int">
+		SELECT DAYS_CITY_NUM FROM DAYS WHERE days_schedule_num = ${num} and days_n = 1
+	</select>
+</mapper>
